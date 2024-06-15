@@ -2,16 +2,20 @@
 % Please edit documentation in R/wmwm.test.R
 \name{wmwm.test}
 \alias{wmwm.test}
-\title{Two-sample Wilcoxon-Mann-Whitney Test in the Presence of Arbitrarily Missing Data}
+\title{Two-sample Wilcoxon-Mann-Whitney Test in the Presence of
+Arbitrarily Missing Data}
 \usage{
 wmwm.test(X, Y, alternative = c("two.sided", "less", "greater"),
 ties = NULL, lower.boundary = -Inf,
 upper.boundary = Inf, exact = NULL, correct = TRUE)
 }
 \arguments{
-\item{X, Y}{numeric vectors of data values with potential missing data. Inf and -Inf values will be omitted.}
+\item{X, Y}{numeric vectors of data values with potential missing data.
+Inf and -Inf values will be omitted.}
 
-\item{alternative}{a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less". You can specify just the initial letter.}
+\item{alternative}{a character string specifying the alternative hypothesis,
+must be one of "two.sided" (default), "greater" or "less".
+You can specify just the initial letter.}
 
 \item{ties}{a logical indicating whether samples could be tied.
 \itemize{
@@ -19,41 +23,64 @@ upper.boundary = Inf, exact = NULL, correct = TRUE)
 \item If observed samples do not contain tied samples, ties defaults to FALSE.
 }}
 
-\item{lower.boundary}{(when ties is TRUE) a number specifying the lower bound of the data set, must be smaller or equal than the minimum of all observed data.}
+\item{lower.boundary}{(when ties is TRUE) a number specifying the
+lower bound of the data set, must be smaller or equal than
+the minimum of all observed data.}
 
-\item{upper.boundary}{(when ties is TRUE) a number specifying the upper bound of the data set, must be larger or equal than the maximum of all observed data.}
+\item{upper.boundary}{(when ties is TRUE) a number specifying the
+upper bound of the data set, must be larger or equal than
+the maximum of all observed data.}
 
-\item{exact}{a logical indicating whether the bounds should be of an exact p-value.}
+\item{exact}{a logical indicating whether the bounds should be of an
+exact p-value.}
 
-\item{correct}{a logical indicating whether the bounds should be of a p-value applying continuity correction in the normal approximation.}
+\item{correct}{a logical indicating whether the bounds should be of
+a p-value applying continuity correction in the normal approximation.}
 }
 \value{
 \item{p.value}{the p-value for the test}
 
-\item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney test statistic without missing data}
+\item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney
+test statistic without missing data}
 
-\item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney test without missing data.}
+\item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney
+test without missing data.}
 
 \item{alternative}{a character string describing the alternative hypothesis.}
 
-\item{ties.method}{a character string describing whether samples are considered tied.}
+\item{ties.method}{a character string describing whether samples are
+considered tied.}
 
 \item{description.bounds}{a character string describing the bounds.}
 
 \item{data.name}{a character string giving the names of the data.}
 }
 \description{
-Performs Wilcoxon-Mann-Whitney two-sample hypothesis tests on (potentially) partially observed vectors of data with controlled Type I error regardless of values of missing data.
+Performs Wilcoxon-Mann-Whitney two-sample hypothesis tests
+on (potentially) partially observed vectors of data
+with controlled Type I error regardless of values of missing data.
 }
 \details{
-This function allows us to perform two-sample Wilcoxon-Mann-Whitney test in the presence of missing data with controlled controlled Type I error regardless of the values of missing data.
+This function allows us to perform
+Wilcoxon-Mann-Whitney test in the presence of missing data
+with controlled controlled Type I error
+regardless of the values of missing data.
 
-This function will compute the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values without missing data. The p-value of this test is then returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
+This function will compute the bounds of the Wilcoxon-Mann-Whitney
+test statistic and its p-value without missing data.
+The p-value of this test is then returned as the
+maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 
-When \code{X} and \code{Y} consist of real-valued, potentially tied samples, by additionally specifying \code{ties = TRUE} (this is automatically done if ties exist in observed samples \verb{X'} and \verb{Y'}),
+When \code{X} and \code{Y} consist of real-valued, potentially tied samples,
+by additionally specifying \code{ties = TRUE}
+(this is automatically done if ties exist in observed samples \verb{X'} and \verb{Y'}),
 this function deals with ties using mid-ranks method.
 
-By default (if exact is not specified), this function returns bounds of an exact p-value if the \code{X} and \code{Y} both contain less than 50 samples and there are no ties. Otherwise, bounds of a p-value calculated using normal approximation with continuity correction will be returned.
+By default (if exact is not specified), this function returns
+bounds of an exact p-value if the \code{X} and \code{Y} both contain less than
+50 samples and there are no ties.
+Otherwise, bounds of a p-value calculated using normal approximation
+with continuity correction will be returned.
 }
 \examples{
 
@@ -74,10 +101,15 @@ wmwm.test(X,Y, ties = TRUE)
 }
 \references{
 \itemize{
-\item Zeng Y, Adams NM, Bodenham DA. On two-sample testing for data with arbitrarily missing values. arXiv preprint arXiv:2403.15327. 2024 Mar 22.
-\item Mann, Henry B., and Donald R. Whitney. "On a test of whether one of two random variables is stochastically larger than the other." \emph{The annals of mathematical statistics} (1947): 50-60.
-\item Lehmann, Erich Leo, and Howard J. D'Abrera. Nonparametrics: statistical methods based on ranks. Holden-day, 1975.
-\item Schafer, Joseph L., and John W. Graham. "Missing data: our view of the state of the art." \emph{Psychological methods} 7.2 (2002): 147.
+\item Zeng Y, Adams NM, Bodenham DA. On two-sample testing for data with
+arbitrarily missing values. arXiv preprint arXiv:2403.15327. 2024 Mar 22.
+
+\item Mann, Henry B., and Donald R. Whitney. "On a test of whether one
+of two random variables is stochastically larger than the other."
+\emph{The annals of mathematical statistics} (1947): 50-60.
+
+\item Lehmann, Erich Leo, and Howard J. D'Abrera. Nonparametrics:
+statistical methods based on ranks. Holden-day, 1975.
 }
 }
 \seealso{
