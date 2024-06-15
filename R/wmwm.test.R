@@ -14,9 +14,9 @@
 #' @title Two-sample Wilcoxon-Mann-Whitney Test in the Presence of
 #' Arbitrarily Missing Data
 #'
-#' @description Performs Wilcoxon-Mann-Whitney two-sample hypothesis tests
-#' on (potentially) partially observed vectors of data
-#' with controlled Type I error regardless of values of missing data.
+#' @description Performs the two-sample test method
+#' proposed in (Zeng et al., 2024), a theoretical extension of
+#' Wilcoxon-Mann-Whitney test in the presence of missing data.
 #'
 #' @usage wmwm.test(X, Y, alternative = c("two.sided", "less", "greater"),
 #' ties = NULL, lower.boundary = -Inf,
@@ -41,15 +41,10 @@
 #' @param correct a logical indicating whether the bounds should be of
 #' a p-value applying continuity correction in the normal approximation.
 #'
-#' @details  This function allows us to perform
-#'  Wilcoxon-Mann-Whitney test in the presence of missing data
-#'  with controlled controlled Type I error
-#'  regardless of the values of missing data.
-#'
-#' This function will compute the bounds of the Wilcoxon-Mann-Whitney
+#' @details This function will compute the bounds of the Wilcoxon-Mann-Whitney
 #' test statistic and its p-value without missing data.
-#' The p-value of this test is then returned as the
-#' maximum possible p-value of the Wilcoxon-Mann-Whitney test.
+#' The p-value of the test method proposed in (Zeng et al., 2024) is then
+#' returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 #'
 #' When `X` and `Y` consist of real-valued, potentially tied samples,
 #' by additionally specifying `ties = TRUE`
@@ -64,10 +59,10 @@
 #'
 #' @return
 #'
-#'  \item{p.value}{the p-value for the test}
+#'  \item{p.value}{the p-value for the test.}
 #'
 #'  \item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney
-#'  test statistic without missing data}
+#'  test statistic without missing data.}
 #'
 #'  \item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney
 #'  test without missing data.}
@@ -89,7 +84,7 @@
 #'
 #'  \item Mann, Henry B., and Donald R. Whitney. "On a test of whether one
 #'  of two random variables is stochastically larger than the other."
-#'  \emph{The annals of mathematical statistics} (1947): 50-60.
+#'  {The Annals of Mathematical Statistics} (1947): 50-60.
 #'
 #'  \item Lehmann, Erich Leo, and Howard J. D'Abrera. Nonparametrics:
 #'  statistical methods based on ranks. Holden-day, 1975.
