@@ -20,6 +20,7 @@ boundsPValueWithTies <- function(X, Y, alternative, lower.boundary,
   # Compute bounds of WMWS tatistic using boundsWMWStatistic function
   Bounds <- boundsWMWStatistic(X, Y, ties = TRUE, lower.boundary = lower.boundary,
                                upper.boundary = upper.boundary)
+
   lowerBoundWMWStatistic <- Bounds[1]
   upperBoundWMWStatistic <- Bounds[2]
 
