@@ -1,3 +1,88 @@
+# This function is prepared for the preprint ``On two-sample testing for data with arbitrarily missing values'.
+# When no missing data is presented, this function returns exactly the same results as stats::wilcox.test().
+# When missing data is presented, this function returns a p-value that controls the Type I error regardless of the values of missing data, along with the bounds of the Wilcoxon-Mann-Whitney test statistic and the bounds of the p-value of the test without missing data.
+
+#' @md
+#' @export
+#'
+#' @title Two-sample Wilcoxon-Mann-Whitney Test in the Presence of Arbitrarily Missing Data
+#'
+#' @description Performs Wilcoxon-Mann-Whitney two-sample hypothesis tests on (potentially) partially observed vectors of data with controlled Type I error regardless of values of missing data.
+#'
+#' @usage wmwm.test(X, Y, alternative = c("two.sided", "less", "greater"),
+#' ties = NULL, lower.boundary = -Inf,
+#' upper.boundary = Inf, exact = NULL, correct = TRUE)
+#'
+#' @param X,Y numeric vectors of data values with potential missing data. Inf and -Inf values will be omitted.
+#' @param alternative a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less". You can specify just the initial letter.
+#' @param exact a logical indicating whether the bounds should be of an exact p-value.
+#' @param ties a logical indicating whether samples could be tied.
+#'   * If observed samples contain tied samples, ties defaults to TRUE.
+#'   * If observed samples do not contain tied samples, ties defaults to FALSE.
+#' @param lower.boundary (when ties is TRUE) a number specifying the lower bound of the data set, must be smaller or equal than the minimum of all observed data.
+#' @param upper.boundary (when ties is TRUE) a number specifying the upper bound of the data set, must be larger or equal than the maximum of all observed data.
+#' @param correct a logical indicating whether the bounds should be of a p-value applying continuity correction in the normal approximation.
+#'
+#' @details The Wilcoxon-Mann-Whitney test, also known as Wilcoxon rank sum test or Mann-Whitney U test, is a non-parametric two-sample hypothesis testing method.
+#' Suppose `X` and `Y` are vectors of univariate, real-valued samples assumed randomly generated from two potentially different populations. The null hypothesis of the test is that
+#' the two populations are the same. If both `X` and `Y` are fully observed, [stats::wilcox.test()] can be carried out for performing the Wilcoxon-Mann-Whitney test.
+#'
+#' When `X` and `Y` are only partially observed, denote observed samples in `X` and `Y` as `X'` and `Y'`, respectively. The Wilcoxon-Mann-Whitney test can not be carried out directly.
+#' The default method in [stats::wilcox.test()] is to ignore all unobserved samples and perform the test between `X'` and `Y'`.
+#' Unfortunately, this practice of ignoring unobserved samples is rarely valid and can potentially leads to a higher Type I error than the pre-specified significance level.
+#'
+#' This function allows us to perform two-sample Wilcoxon-Mann-Whitney test in the presence of missing data with controlled controlled Type I error regardless of the values of missing data.
+#' This is achieved by first computing the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values, and rejecting the null hypothesis only if all test statistics are significant,
+#' or alternatively, only if all p-values are smaller or equal than the pre-specified significance level.
+#'
+#' When `X` and `Y` consist of real-valued, potentially tied samples, by additionally specifying `ties = TRUE` (this is automatically done if ties exist in observed samples `X'` and `Y'`),
+#' this function deals with ties using mid-ranks method.
+#' If the missing samples can not be smaller than minimum of all observed samples or missing samples can not be larger than maximum of all observed samples,
+#' one can specify `lower.boundary = 'equal'` or `upper.boundary = 'equal'` to make the bounds potentially tighter, hence, resulting in a potentially smaller p-value.
+#'
+#' By default (if exact is not specified), this function returns bounds of an exact p-value if the `X` and `Y` both contain less than 50 samples and there are no ties. Otherwise, bounds of a p-value calculated using normal approximation with continuity correction will be returned.
+#'
+#' @return
+#'
+#'  \item{p.value}{the p-value for the test}
+#'
+#'  \item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney test statistic without missing data}
+#'
+#'  \item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney test without missing data.}
+#'
+#'  \item{alternative}{a character string describing the alternative hypothesis.}
+#'
+#'  \item{description.bounds}{a character string describing the bounds.}
+#'
+#'  \item{data.name}{a character string giving the names of the data.}
+#'
+#'
+#' @references
+#' \itemize{
+#'  \item Zeng Y, Adams NM, Bodenham DA. On two-sample testing for data with arbitrarily missing values. arXiv preprint arXiv:2403.15327. 2024 Mar 22.
+#'  \item Mann, Henry B., and Donald R. Whitney. "On a test of whether one of two random variables is stochastically larger than the other." \emph{The annals of mathematical statistics} (1947): 50-60.
+#'  \item Lehmann, Erich Leo, and Howard J. D'Abrera. Nonparametrics: statistical methods based on ranks. Holden-day, 1975.
+#'  \item Schafer, Joseph L., and John W. Graham. "Missing data: our view of the state of the art." \emph{Psychological methods} 7.2 (2002): 147.
+#' }
+#'
+#' @seealso [stats::wilcox.test()]
+#'
+#' @examples
+#'
+#' ### Samples assumed distinct real-values
+#' X <- rnorm(100,0,1)
+#' X[1:5] <- NA
+#' Y <- rnorm(50,1,1)
+#' Y[1:5] <- NA
+#' wmwm.test(X,Y)
+#'
+#' ### Samples assumed potentially tied
+#' X <- rpois(50,1)
+#' X[1:5] <- NA
+#' Y <- rpois(50,3)
+#' wmwm.test(X,Y)
+#' wmwm.test(X,Y, ties = TRUE)
+#'
 wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
                                   "greater"), ties = NULL,
                                   lower.boundary = -Inf,
