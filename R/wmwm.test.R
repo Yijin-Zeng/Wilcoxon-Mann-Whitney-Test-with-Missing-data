@@ -1,4 +1,4 @@
-# This function is prepared for the preprint ``On two-sample testing for data with arbitrarily missing values'.
+# This function performs the method proposed in the paper ``On two-sample testing for data with arbitrarily missing values'.
 # When no missing data is presented, this function returns exactly the same results as stats::wilcox.test().
 # When missing data is presented, this function returns a p-value that controls the Type I error regardless of the values of missing data, along with the bounds of the Wilcoxon-Mann-Whitney test statistic and the bounds of the p-value of the test without missing data.
 
@@ -23,22 +23,12 @@
 #' @param upper.boundary (when ties is TRUE) a number specifying the upper bound of the data set, must be larger or equal than the maximum of all observed data.
 #' @param correct a logical indicating whether the bounds should be of a p-value applying continuity correction in the normal approximation.
 #'
-#' @details The Wilcoxon-Mann-Whitney test, also known as Wilcoxon rank sum test or Mann-Whitney U test, is a non-parametric two-sample hypothesis testing method.
-#' Suppose `X` and `Y` are vectors of univariate, real-valued samples assumed randomly generated from two potentially different populations. The null hypothesis of the test is that
-#' the two populations are the same. If both `X` and `Y` are fully observed, [stats::wilcox.test()] can be carried out for performing the Wilcoxon-Mann-Whitney test.
+#' @details  This function allows us to perform two-sample Wilcoxon-Mann-Whitney test in the presence of missing data with controlled controlled Type I error regardless of the values of missing data.
 #'
-#' When `X` and `Y` are only partially observed, denote observed samples in `X` and `Y` as `X'` and `Y'`, respectively. The Wilcoxon-Mann-Whitney test can not be carried out directly.
-#' The default method in [stats::wilcox.test()] is to ignore all unobserved samples and perform the test between `X'` and `Y'`.
-#' Unfortunately, this practice of ignoring unobserved samples is rarely valid and can potentially leads to a higher Type I error than the pre-specified significance level.
-#'
-#' This function allows us to perform two-sample Wilcoxon-Mann-Whitney test in the presence of missing data with controlled controlled Type I error regardless of the values of missing data.
-#' This is achieved by first computing the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values, and rejecting the null hypothesis only if all test statistics are significant,
-#' or alternatively, only if all p-values are smaller or equal than the pre-specified significance level.
+#' This function will compute the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values without missing data. The p-value of this test is then returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 #'
 #' When `X` and `Y` consist of real-valued, potentially tied samples, by additionally specifying `ties = TRUE` (this is automatically done if ties exist in observed samples `X'` and `Y'`),
 #' this function deals with ties using mid-ranks method.
-#' If the missing samples can not be smaller than minimum of all observed samples or missing samples can not be larger than maximum of all observed samples,
-#' one can specify `lower.boundary = 'equal'` or `upper.boundary = 'equal'` to make the bounds potentially tighter, hence, resulting in a potentially smaller p-value.
 #'
 #' By default (if exact is not specified), this function returns bounds of an exact p-value if the `X` and `Y` both contain less than 50 samples and there are no ties. Otherwise, bounds of a p-value calculated using normal approximation with continuity correction will be returned.
 #'
@@ -51,6 +41,8 @@
 #'  \item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney test without missing data.}
 #'
 #'  \item{alternative}{a character string describing the alternative hypothesis.}
+#'
+#'  \item{ties.method}{a character string describing whether samples are considered tied.}
 #'
 #'  \item{description.bounds}{a character string describing the bounds.}
 #'
@@ -121,7 +113,6 @@ wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
     ########### compute bounds
     if(ties) {
     ######################## checkInput return 1 ###############################
-
       # compute the bounds of p-values
       BOUNDS <- boundsPValueWithTies(X,Y, alternative = alternative,
                                      lower.boundary = lower.boundary,
@@ -135,6 +126,7 @@ wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
 
       BOUNDS <- boundsPValueNoTies(X,Y,alternative = alternative, exact = exact,
                                    correct = correct)
+
       BOUNDSWMW <- BOUNDS[1:2]
       BOUNDSPVALUE <- BOUNDS[3:4]
       exact <- BOUNDS[5]
@@ -169,12 +161,12 @@ wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
 
       # description of bounds of p-value
       if(exact == TRUE){
-        DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the exact p-value.'
+        DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the exact p-value when data are not missing'
       }else{
         if(correct == TRUE){
-          DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the p-value obtained using normal approximation with continuity correction.'
+          DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the p-value obtained using normal approximation with continuity correction when data are not missing.'
         }else{
-          DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the p-value obtained using normal approximation.'
+          DESCRIPTIONBOUNDS <- 'bounds.pvalue is the bounds of the p-value obtained using normal approximation when data are not missing.'
         }
 
       }
@@ -182,15 +174,15 @@ wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
     #}
   }
 
-  DESCRIPTIONBOUNDS <- paste(DESCRIPTIONBOUNDS, 'The null hypothesis should be rejected if', BOUNDSPVALUE[2], 'is smaller or equal than the pre-speficied significance level')
+  #DESCRIPTIONBOUNDS <- paste(DESCRIPTIONBOUNDS, 'The null hypothesis should be rejected if', BOUNDSPVALUE[2], 'is smaller or equal than the pre-speficied significance level')
 
   RES <- list(p.value = BOUNDSPVALUE[2],
               bounds.statistic = BOUNDSWMW,
               bounds.pvalue =  BOUNDSPVALUE,
               alternative = alternative,
+              ties.method = ties,
               description.bounds = DESCRIPTIONBOUNDS,
               data.name = DNAME)
 
   return(RES)
-
 }

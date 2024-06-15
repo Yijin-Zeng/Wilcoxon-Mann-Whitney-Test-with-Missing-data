@@ -25,7 +25,7 @@ checkTies <- function(X, Y, ties) {
       warning("all samples are observed distinct numbers, ties can only be FALSE")
       ties <- FALSE
     }
-    
+
     if( (ties == FALSE) & (length(r) != length(unique(r))) & (length(Z) == length(Z_prime))){
       warning("all samples are observed with tied observations, ties can only be TRUE")
       ties <- TRUE
@@ -34,5 +34,4 @@ checkTies <- function(X, Y, ties) {
   }
 
   return(ties)
-
 }

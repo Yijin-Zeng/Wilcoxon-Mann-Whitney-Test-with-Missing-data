@@ -31,15 +31,17 @@ boundsSumRank <- function(X, Y, ties, lower.boundary, upper.boundary){
     min_observed <- min(Z_prime)
     max_observed <- max(Z_prime)
 
-    if (lower.boundary == min_observed){
-      a <- min_observed
+    if (lower.boundary <= min_observed){
+      a <- lower.boundary
     }else{
+      warning('lower.boundary must be smaller or equal than the minimum of all observed data. lower.boundary is set to -Inf')
       a <- -Inf
     }
 
-    if (upper.boundary == max_observed){
-      b <- max_observed
+    if (upper.boundary >= max_observed){
+      b <- upper.boundary
     }else{
+      warning('upper.boundary must be larger or equal than the maximum of all observed data. upper.boundary is set to Inf')
       b <- Inf
     }
 

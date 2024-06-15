@@ -36,6 +36,8 @@ upper.boundary = Inf, exact = NULL, correct = TRUE)
 
 \item{alternative}{a character string describing the alternative hypothesis.}
 
+\item{ties.method}{a character string describing whether samples are considered tied.}
+
 \item{description.bounds}{a character string describing the bounds.}
 
 \item{data.name}{a character string giving the names of the data.}
@@ -44,22 +46,12 @@ upper.boundary = Inf, exact = NULL, correct = TRUE)
 Performs Wilcoxon-Mann-Whitney two-sample hypothesis tests on (potentially) partially observed vectors of data with controlled Type I error regardless of values of missing data.
 }
 \details{
-The Wilcoxon-Mann-Whitney test, also known as Wilcoxon rank sum test or Mann-Whitney U test, is a non-parametric two-sample hypothesis testing method.
-Suppose \code{X} and \code{Y} are vectors of univariate, real-valued samples assumed randomly generated from two potentially different populations. The null hypothesis of the test is that
-the two populations are the same. If both \code{X} and \code{Y} are fully observed, \code{\link[stats:wilcox.test]{stats::wilcox.test()}} can be carried out for performing the Wilcoxon-Mann-Whitney test.
-
-When \code{X} and \code{Y} are only partially observed, denote observed samples in \code{X} and \code{Y} as \verb{X'} and \verb{Y'}, respectively. The Wilcoxon-Mann-Whitney test can not be carried out directly.
-The default method in \code{\link[stats:wilcox.test]{stats::wilcox.test()}} is to ignore all unobserved samples and perform the test between \verb{X'} and \verb{Y'}.
-Unfortunately, this practice of ignoring unobserved samples is rarely valid and can potentially leads to a higher Type I error than the pre-specified significance level.
-
 This function allows us to perform two-sample Wilcoxon-Mann-Whitney test in the presence of missing data with controlled controlled Type I error regardless of the values of missing data.
-This is achieved by first computing the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values, and rejecting the null hypothesis only if all test statistics are significant,
-or alternatively, only if all p-values are smaller or equal than the pre-specified significance level.
+
+This function will compute the bounds of the Wilcoxon-Mann-Whitney test statistic and p-values without missing data. The p-value of this test is then returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 
 When \code{X} and \code{Y} consist of real-valued, potentially tied samples, by additionally specifying \code{ties = TRUE} (this is automatically done if ties exist in observed samples \verb{X'} and \verb{Y'}),
 this function deals with ties using mid-ranks method.
-If the missing samples can not be smaller than minimum of all observed samples or missing samples can not be larger than maximum of all observed samples,
-one can specify \code{lower.boundary = 'equal'} or \code{upper.boundary = 'equal'} to make the bounds potentially tighter, hence, resulting in a potentially smaller p-value.
 
 By default (if exact is not specified), this function returns bounds of an exact p-value if the \code{X} and \code{Y} both contain less than 50 samples and there are no ties. Otherwise, bounds of a p-value calculated using normal approximation with continuity correction will be returned.
 }
