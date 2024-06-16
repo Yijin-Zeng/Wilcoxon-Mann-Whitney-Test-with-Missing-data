@@ -41,15 +41,10 @@
 #' @param correct a logical indicating whether the bounds should be of
 #' a p-value applying continuity correction in the normal approximation.
 #'
-#' @details This function will compute the bounds of the Wilcoxon-Mann-Whitney
-#' test statistic and its p-value without missing data.
+#' @details This function computes the bounds of the Wilcoxon-Mann-Whitney
+#' test statistic and its p-value with missing data.
 #' The p-value of the test method proposed in (Zeng et al., 2024) is then
 #' returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
-#'
-#' When `X` and `Y` consist of real-valued, potentially tied samples,
-#' by additionally specifying `ties = TRUE`
-#' (this is automatically done if ties exist in observed samples `X'` and `Y'`),
-#' this function deals with ties using mid-ranks method.
 #'
 #' By default (if exact is not specified), this function returns
 #' bounds of an exact p-value if the `X` and `Y` both contain less than
@@ -90,10 +85,11 @@
 #'  statistical methods based on ranks. Holden-day, 1975.
 #' }
 #'
-#' @seealso [stats::wilcox.test()]
+#' @seealso [stats::wilcox.test()] when data are fully observed.
 #'
 #' @examples
 #'
+#' set.seed(0)
 #' ### Samples assumed distinct real-values
 #' X <- rnorm(100,0,1)
 #' X[1:5] <- NA
@@ -208,7 +204,6 @@ wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
   }
 
   #DESCRIPTIONBOUNDS <- paste(DESCRIPTIONBOUNDS, 'The null hypothesis should be rejected if', BOUNDSPVALUE[2], 'is smaller or equal than the pre-speficied significance level')
-
   RES <- list(p.value = BOUNDSPVALUE[2],
               bounds.statistic = BOUNDSWMW,
               bounds.pvalue =  BOUNDSPVALUE,

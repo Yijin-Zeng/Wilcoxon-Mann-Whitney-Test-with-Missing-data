@@ -38,10 +38,10 @@ exact p-value.}
 a p-value applying continuity correction in the normal approximation.}
 }
 \value{
-\item{p.value}{the p-value for the test}
+\item{p.value}{the p-value for the test.}
 
 \item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney
-test statistic without missing data}
+test statistic without missing data.}
 
 \item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney
 test without missing data.}
@@ -61,15 +61,10 @@ proposed in (Zeng et al., 2024), a theoretical extension of
 Wilcoxon-Mann-Whitney test in the presence of missing data.
 }
 \details{
-This function will compute the bounds of the Wilcoxon-Mann-Whitney
-test statistic and its p-value without missing data.
+This function computes the bounds of the Wilcoxon-Mann-Whitney
+test statistic and its p-value with missing data.
 The p-value of the test method proposed in (Zeng et al., 2024) is then
 returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
-
-When \code{X} and \code{Y} consist of real-valued, potentially tied samples,
-by additionally specifying \code{ties = TRUE}
-(this is automatically done if ties exist in observed samples \verb{X'} and \verb{Y'}),
-this function deals with ties using mid-ranks method.
 
 By default (if exact is not specified), this function returns
 bounds of an exact p-value if the \code{X} and \code{Y} both contain less than
@@ -79,6 +74,7 @@ with continuity correction will be returned.
 }
 \examples{
 
+set.seed(0)
 ### Samples assumed distinct real-values
 X <- rnorm(100,0,1)
 X[1:5] <- NA
@@ -108,5 +104,5 @@ statistical methods based on ranks. Holden-day, 1975.
 }
 }
 \seealso{
-\code{\link[stats:wilcox.test]{stats::wilcox.test()}}
+\code{\link[stats:wilcox.test]{stats::wilcox.test()}} when data are fully observed.
 }
