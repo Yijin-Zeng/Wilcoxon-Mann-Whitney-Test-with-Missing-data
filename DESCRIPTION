@@ -6,8 +6,10 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
+Depends:
+    R (>= 3.2.1)	
 Imports: 
-    stats
+    stats (>= 3.2.1)
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
