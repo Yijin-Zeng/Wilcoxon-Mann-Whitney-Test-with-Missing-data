@@ -7,9 +7,9 @@ Authors@R:
 Description: Perform Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 License: MIT + file LICENSE
 Depends:
-    R (>= 3.1.1)	
+    R (>= 3.2.1)	
 Imports: 
-    stats (>= 3.1.1)
+    stats (>= 3.2.1)
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
