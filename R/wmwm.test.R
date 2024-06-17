@@ -92,20 +92,20 @@
 #' @examples
 #'
 #' set.seed(0)
-#' ### Samples assumed distinct real-values
+#' ### Data of distinct real-values
 #' X <- rnorm(100,0,1)
 #' X[1:5] <- NA
 #' Y <- rnorm(50,1,1)
 #' Y[1:5] <- NA
 #' wmwm.test(X,Y)
 #'
-#' ### Samples assumed potentially tied
+#' ### Data of tied samples
 #' X <- rpois(50,1)
 #' X[1:5] <- NA
 #' Y <- rpois(50,3)
 #' wmwm.test(X,Y)
-#' wmwm.test(X,Y, ties = TRUE)
-#'
+
+
 wmwm.test <- function(X, Y, alternative = c("two.sided", "less",
                                   "greater"), ties = NULL,
                                   lower.boundary = -Inf,
