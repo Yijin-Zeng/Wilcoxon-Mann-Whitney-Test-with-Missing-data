@@ -2,7 +2,7 @@
 % Please edit documentation in R/wmwm.test.R
 \name{wmwm.test}
 \alias{wmwm.test}
-\title{Two-sample Wilcoxon-Mann-Whitney Test in the Presence of
+\title{Wilcoxon-Mann-Whitney Test in the Presence of
 Arbitrarily Missing Data}
 \usage{
 wmwm.test(X, Y, alternative = c("two.sided", "less", "greater"),
@@ -41,28 +41,30 @@ a p-value applying continuity correction in the normal approximation.}
 \item{p.value}{the p-value for the test.}
 
 \item{bounds.statistic}{bounds of the value of the Wilcoxon-Mann-Whitney
-test statistic without missing data.}
+test statistic.}
 
 \item{bounds.pvalue}{bounds of the p-value of the Wilcoxon-Mann-Whitney
-test without missing data.}
+test.}
 
 \item{alternative}{a character string describing the alternative hypothesis.}
 
 \item{ties.method}{a character string describing whether samples are
 considered tied.}
 
-\item{description.bounds}{a character string describing the bounds.}
+\item{description.bounds}{a character string describing the bounds of the p-value.}
 
 \item{data.name}{a character string giving the names of the data.}
 }
 \description{
-Performs the two-sample test method
-proposed in (Zeng et al., 2024), a theoretical extension of
-Wilcoxon-Mann-Whitney test in the presence of missing data.
+Performs the two-sample Wilcoxon-Mann-Whitney test in the presence
+of missing data, which controls the Type I error regardless of the values of
+missing data.
 }
 \details{
-This function computes the bounds of the Wilcoxon-Mann-Whitney
-test statistic and its p-value with missing data.
+\code{wmwm.test()} performs the two-sample hypothesis test method proposed
+in (Zeng et al., 2024) for univariate data when not all data are observed.
+Bounds of the Wilcoxon-Mann-Whitne test statistic and its p-value
+will be computed in the presence of missing data.
 The p-value of the test method proposed in (Zeng et al., 2024) is then
 returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 
