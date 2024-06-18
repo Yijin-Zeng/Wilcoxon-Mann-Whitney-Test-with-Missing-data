@@ -41,15 +41,16 @@
 #' @param correct a logical indicating whether the bounds should be of
 #' a p-value applying continuity correction in the normal approximation.
 #'
-#' @details `wmwm.test()` performs the two-sample hypothesis test method proposed
-#' in (Zeng et al., 2024) for univariate data when not all data are observed.
+#' @details \code{wmwm.test()} performs the two-sample hypothesis test method
+#' proposed in (Zeng et al., 2024) for univariate data
+#' when not all data are observed.
 #' Bounds of the Wilcoxon-Mann-Whitne test statistic and its p-value
 #' will be computed in the presence of missing data.
 #' The p-value of the test method proposed in (Zeng et al., 2024) is then
 #' returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 #'
 #' By default (if exact is not specified), this function returns
-#' bounds of an exact p-value if the `X` and `Y` both contain less than
+#' bounds of an exact p-value if the \code{X} and \code{Y} both contain less than
 #' 50 samples and there are no ties.
 #' Otherwise, bounds of a p-value calculated using normal approximation
 #' with continuity correction will be returned.

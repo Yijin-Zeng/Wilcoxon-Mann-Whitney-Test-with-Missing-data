@@ -61,8 +61,9 @@ of missing data, which controls the Type I error regardless of the values of
 missing data.
 }
 \details{
-\code{wmwm.test()} performs the two-sample hypothesis test method proposed
-in (Zeng et al., 2024) for univariate data when not all data are observed.
+\code{wmwm.test()} performs the two-sample hypothesis test method
+proposed in (Zeng et al., 2024) for univariate data
+when not all data are observed.
 Bounds of the Wilcoxon-Mann-Whitne test statistic and its p-value
 will be computed in the presence of missing data.
 The p-value of the test method proposed in (Zeng et al., 2024) is then
