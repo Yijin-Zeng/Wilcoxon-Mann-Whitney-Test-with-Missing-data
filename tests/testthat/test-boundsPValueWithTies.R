@@ -43,18 +43,18 @@ test_that("no missing data case: produce the same p-value
 test_that("no missing data case: produce the same p-value
           (alternative = two.sided, correct = FALSE)", {
             ### two sided (correct = FALSE)
-            resTestTwo <- boundsPValueWithTies(X,Y, alternative = 'two.sided',
-                                               lower.boundary = -Inf,
-                                               upper.boundary = Inf,
-                                               exact = FALSE, correct = FALSE)
-            resExpcTwo <- stats::wilcox.test(X,Y, alternative = 'two.sided',
-                                             exact = FALSE, correct = FALSE)
+  resTestTwo <- boundsPValueWithTies(X,Y, alternative = 'two.sided',
+                                     lower.boundary = -Inf,
+                                     upper.boundary = Inf,
+                                     exact = FALSE, correct = FALSE)
+  resExpcTwo <- stats::wilcox.test(X,Y, alternative = 'two.sided',
+                                   exact = FALSE, correct = FALSE)
 
-            expect_equal(round(resTestTwo[3],accuary),
-                         round(resExpcTwo$p.value[[1]],accuary))
-            expect_equal(round(resTestTwo[4],accuary),
-                         round(resExpcTwo$p.value[[1]],accuary))
-          })
+  expect_equal(round(resTestTwo[3],accuary),
+               round(resExpcTwo$p.value[[1]],accuary))
+  expect_equal(round(resTestTwo[4],accuary),
+               round(resExpcTwo$p.value[[1]],accuary))
+})
 
 
 test_that("no missing data case: produce the same p-value
@@ -76,17 +76,17 @@ test_that("no missing data case: produce the same p-value
 test_that("no missing data case: produce the same p-value
           (alternative = less, correct = FALSE)", {
             ## less (correct = FALSE)
-            resTestLess <- boundsPValueWithTies(X,Y, alternative = 'less',
-                                                lower.boundary = -Inf,
-                                                upper.boundary = Inf,
-                                                exact = FALSE, correct = FALSE)
-            resExpcLess <- stats::wilcox.test(X,Y, alternative = 'less',
-                                              exact = FALSE, correct = FALSE)
-            expect_equal(round(resTestLess[3],accuary),
-                         round(resExpcLess$p.value[[1]],accuary))
-            expect_equal(round(resTestLess[4],accuary),
-                         round(resExpcLess$p.value[[1]],accuary))
-          })
+  resTestLess <- boundsPValueWithTies(X,Y, alternative = 'less',
+                                      lower.boundary = -Inf,
+                                      upper.boundary = Inf,
+                                      exact = FALSE, correct = FALSE)
+  resExpcLess <- stats::wilcox.test(X,Y, alternative = 'less',
+                                    exact = FALSE, correct = FALSE)
+  expect_equal(round(resTestLess[3],accuary),
+               round(resExpcLess$p.value[[1]],accuary))
+  expect_equal(round(resTestLess[4],accuary),
+               round(resExpcLess$p.value[[1]],accuary))
+})
 
 
 test_that("no missing data case: produce the same p-value
@@ -108,18 +108,18 @@ test_that("no missing data case: produce the same p-value
 test_that("no missing data case: produce the same p-value
           (alternative = greater, correct = FALSE)", {
 
-            ## greater (correct = FALSE)
-            resTestGreat <- boundsPValueWithTies(X,Y, alternative = 'greater',
-                                                 lower.boundary = -Inf,
-                                                 upper.boundary = Inf,
-                                                 exact = FALSE, correct = FALSE)
-            resExpcGreat <- stats::wilcox.test(X,Y, alternative = 'greater',
-                                               exact = FALSE, correct = FALSE)
-            expect_equal(round(resTestGreat[3],accuary),
-                         round(resExpcGreat$p.value[[1]],accuary))
-            expect_equal(round(resTestGreat[4],accuary),
-                         round(resExpcGreat$p.value[[1]],accuary))
-          })
+  ## greater (correct = FALSE)
+  resTestGreat <- boundsPValueWithTies(X,Y, alternative = 'greater',
+                                       lower.boundary = -Inf,
+                                       upper.boundary = Inf,
+                                       exact = FALSE, correct = FALSE)
+  resExpcGreat <- stats::wilcox.test(X,Y, alternative = 'greater',
+                                     exact = FALSE, correct = FALSE)
+  expect_equal(round(resTestGreat[3],accuary),
+               round(resExpcGreat$p.value[[1]],accuary))
+  expect_equal(round(resTestGreat[4],accuary),
+               round(resExpcGreat$p.value[[1]],accuary))
+})
 
 
 ############################ testing: missing data case ######################
