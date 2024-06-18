@@ -7,7 +7,6 @@ X <- rpois(n,1)
 Y <- rpois(m,1)
 
 #################### testing: no missing data case ###########################
-
 test_that("no missing data case: produce the same test statistic", {
   # While no missing data is presented, the boundsPValueWithTies is expected
   # to produce exactly the same result as stats::wilcox.test().
@@ -149,7 +148,6 @@ resExpcTwoOne <- stats::wilcox.test(ImputedXOne,ImputedYOne,
 resExpcTwoTwo <- stats::wilcox.test(ImputedXTwo,ImputedYTwo,
                                     alternative = 'two.sided',
                                     exact = FALSE)
-
 
 test_that("missing data case: check the bounds of test statistic
           (lower.boundary = -Inf)", {
