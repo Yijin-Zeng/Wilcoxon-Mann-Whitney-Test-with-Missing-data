@@ -4,7 +4,7 @@ test_that("check number of valid inputs", {
   expect_error(wmwm.test(X,Y),
                "not enough valid samples in 'X' or 'Y'")
 
-
+  # second example
   X <- c('a', 'b', 'c')
   Y <- c(0,1)
   expect_error(wmwm.test(X,Y),
@@ -36,7 +36,6 @@ test_that("expect warning when observed samples are tied but ties are
                  "observed samples are tied, you may want to specify ties = TRUE")
 
 })
-
 
 test_that("expect warning when all samples are observed as unique numbers
           but ties are specified to TRUE", {
