@@ -8,7 +8,7 @@
 
 This package includes one function `wmwm.test()`, which performs the
 two-sample hypothesis test method proposed in (Zeng et al., 2024) for
-univariate data when data are not fully observed. Its method is a
+univariate data when data are not fully observed. This method is a
 theoretical extension of Wilcoxon-Mann-Whitney test in the presence of
 missing data, which controls the Type I error regardless of values of
 missing data.
@@ -34,21 +34,47 @@ This is a basic example which shows you how to perform the test with
 missing data:
 
 ``` r
-   library(wmwm)
-   set.seed(0)
-   X <- rnorm(100,0,1)
-   X[1:5] <- NA
-   Y <- rnorm(50,1,1)
-   Y[1:5] <- NA
-   wmwm.test(X,Y)
+library(wmwm)
+X <- c(6.2, 4.1, 3.5, NA, NA, 7.6, 8.1, 9.2)
+Y <- c(0.2, 1.3, -0.5, 2.4, NA, -1.7)
+#### Assume all samples are distinct.
+## By default, when the sample sizes of both X and Y are smaller than 50,
+## exact distribution will be used.
+wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided')
 #> $p.value
-#> [1] 0.01078726
+#> [1] 0.4908425
 #> 
 #> $bounds.statistic
-#> [1] 1135 1860
+#> [1] 30 48
 #> 
 #> $bounds.pvalue
-#> [1] 5.331134e-08 1.078726e-02
+#> [1] 0.0006660007 0.4908424908
+#> 
+#> $alternative
+#> [1] "two.sided"
+#> 
+#> $ties.method
+#> [1] FALSE
+#> 
+#> $description.bounds
+#> [1] "bounds.pvalue is the bounds of the exact p-value"
+#> 
+#> $data.name
+#> [1] "X and Y"
+```
+
+``` r
+
+## using normality approximation with continuity correction:
+wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided', exact = FALSE, correct = TRUE)
+#> $p.value
+#> [1] 0.477675
+#> 
+#> $bounds.statistic
+#> [1] 30 48
+#> 
+#> $bounds.pvalue
+#> [1] 0.002414649 0.477675024
 #> 
 #> $alternative
 #> [1] "two.sided"
@@ -62,6 +88,69 @@ missing data:
 #> $data.name
 #> [1] "X and Y"
 ```
+
+``` r
+
+#### Assume samples can be tied.
+## When the samples can be tied, normality approximation will be used.
+## By default, lower.boundary = -Inf, upper.boundary = Inf.
+wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided')
+#> Warning in boundsPValueWithTies(X, Y, alternative = alternative, lower.boundary
+#> = lower.boundary, : cannot bound exact p-value with ties
+#> $p.value
+#> [1] 0.477675
+#> 
+#> $bounds.statistic
+#> [1] 30 48
+#> 
+#> $bounds.pvalue
+#> [1] 0.002156873 0.477675024
+#> 
+#> $alternative
+#> [1] "two.sided"
+#> 
+#> $ties.method
+#> [1] TRUE
+#> 
+#> $description.bounds
+#> [1] "bounds.pvalue is the bounds of the p-value obtained using normal approximation with continuity correction"
+#> 
+#> $data.name
+#> [1] "X and Y"
+```
+
+``` r
+
+## specifying lower.boundary and upper.boundary:
+wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided', lower.boundary = -1.7, upper.boundary = 9.2)
+#> Warning in boundsPValueWithTies(X, Y, alternative = alternative, lower.boundary
+#> = lower.boundary, : cannot bound exact p-value with ties
+#> $p.value
+#> [1] 0.3661566
+#> 
+#> $bounds.statistic
+#> [1] 31.5 48.0
+#> 
+#> $bounds.pvalue
+#> [1] 0.002156873 0.366156560
+#> 
+#> $alternative
+#> [1] "two.sided"
+#> 
+#> $ties.method
+#> [1] TRUE
+#> 
+#> $description.bounds
+#> [1] "bounds.pvalue is the bounds of the p-value obtained using normal approximation with continuity correction"
+#> 
+#> $data.name
+#> [1] "X and Y"
+```
+
+## See Also
+
+The R function `stats::wilcox.test()` executes Wilcoxon-Mann-Whitney
+two-sample when all samples are observed.
 
 ## References
 
