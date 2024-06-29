@@ -92,7 +92,7 @@ wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided', exact = FALSE, correct 
 ## By default, lower.boundary = -Inf, upper.boundary = Inf.
 wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided')
 
-## specifying lower.boundary and upper.boundary
+## specifying lower.boundary and upper.boundary:
 wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided', lower.boundary = -1.7, upper.boundary = 9.2)
 }
 \references{

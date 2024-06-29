@@ -9,7 +9,13 @@
 Perform Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 }
 \author{
-\strong{Maintainer}: Yijin Zeng \email{Yijin.zeng20@imperial.ac.uk} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Yijin Zeng \email{yijin.zeng20@imperial.ac.uk}
+
+Authors:
+\itemize{
+  \item Dean Bodenham \email{deanbodenhambsse@gmail.com}
+  \item Niall Adams \email{n.adams@imperial.ac.uk}
+}
 
 }
 \keyword{internal}
