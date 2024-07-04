@@ -35,20 +35,21 @@ missing data:
 
 ``` r
 library(wmwm)
-X <- c(6.2, 4.1, 3.5, NA, NA, 7.6, 8.1, 9.2)
-Y <- c(0.2, 1.3, -0.5, 2.4, NA, -1.7)
+
 #### Assume all samples are distinct.
+X <- c(6.2, 3.5, NA, 7.6, 9.2)
+Y <- c(0.2, 1.3, -0.5, -1.7)
 ## By default, when the sample sizes of both X and Y are smaller than 50,
 ## exact distribution will be used.
 wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided')
 #> $p.value
-#> [1] 0.4908425
+#> [1] 0.1904762
 #> 
 #> $bounds.statistic
-#> [1] 30 48
+#> [1] 16 20
 #> 
 #> $bounds.pvalue
-#> [1] 0.0006660007 0.4908424908
+#> [1] 0.01587302 0.19047619
 #> 
 #> $alternative
 #> [1] "two.sided"
@@ -68,13 +69,13 @@ wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided')
 ## using normality approximation with continuity correction:
 wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided', exact = FALSE, correct = TRUE)
 #> $p.value
-#> [1] 0.477675
+#> [1] 0.1779096
 #> 
 #> $bounds.statistic
-#> [1] 30 48
+#> [1] 16 20
 #> 
 #> $bounds.pvalue
-#> [1] 0.002414649 0.477675024
+#> [1] 0.01996445 0.17790959
 #> 
 #> $alternative
 #> [1] "two.sided"
@@ -92,19 +93,21 @@ wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided', exact = FALSE, correct 
 ``` r
 
 #### Assume samples can be tied.
+X <- c(6, 9, NA, 7, 9)
+Y <- c(0, 1, 0, -1)
 ## When the samples can be tied, normality approximation will be used.
 ## By default, lower.boundary = -Inf, upper.boundary = Inf.
 wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided')
 #> Warning in boundsPValueWithTies(X, Y, alternative = alternative, lower.boundary
 #> = lower.boundary, : cannot bound exact p-value with ties
 #> $p.value
-#> [1] 0.477675
+#> [1] 0.174277
 #> 
 #> $bounds.statistic
-#> [1] 30 48
+#> [1] 16 20
 #> 
 #> $bounds.pvalue
-#> [1] 0.002156873 0.477675024
+#> [1] 0.01745104 0.17427702
 #> 
 #> $alternative
 #> [1] "two.sided"
@@ -122,17 +125,17 @@ wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided')
 ``` r
 
 ## specifying lower.boundary and upper.boundary:
-wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided', lower.boundary = -1.7, upper.boundary = 9.2)
+wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided', lower.boundary = -1, upper.boundary = 9)
 #> Warning in boundsPValueWithTies(X, Y, alternative = alternative, lower.boundary
 #> = lower.boundary, : cannot bound exact p-value with ties
 #> $p.value
-#> [1] 0.3661566
+#> [1] 0.1383146
 #> 
 #> $bounds.statistic
-#> [1] 31.5 48.0
+#> [1] 16.5 20.0
 #> 
 #> $bounds.pvalue
-#> [1] 0.002156873 0.366156560
+#> [1] 0.01745104 0.13831461
 #> 
 #> $alternative
 #> [1] "two.sided"
