@@ -6,8 +6,8 @@
 Arbitrarily Missing Data}
 \usage{
 wmwm.test(X, Y, alternative = c("two.sided", "less", "greater"),
-ties = NULL, lower.boundary = -Inf,
-upper.boundary = Inf, exact = NULL, correct = TRUE)
+ties = NULL, lower.boundary = -Inf, upper.boundary = Inf,
+exact = NULL, correct = TRUE)
 }
 \arguments{
 \item{X, Y}{numeric vectors of data values with potential missing data.
@@ -61,34 +61,42 @@ of missing data, which controls the Type I error regardless of the values of
 missing data.
 }
 \details{
-\code{wmwm.test()} performs the two-sample hypothesis test method proposed
-in (Zeng et al., 2024) for univariate data when not all data are observed.
-Bounds of the Wilcoxon-Mann-Whitne test statistic and its p-value
+\code{wmwm.test()} performs the two-sample hypothesis test method
+proposed in (Zeng et al., 2024) for univariate data
+when not all data are observed.
+Bounds of the Wilcoxon-Mann-Whitney test statistic and its p-value
 will be computed in the presence of missing data.
 The p-value of the test method proposed in (Zeng et al., 2024) is then
 returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 
-By default (if exact is not specified), this function returns
+By default (if \code{exact} is not specified), this function returns
 bounds of an exact p-value if the \code{X} and \code{Y} both contain less than
 50 samples and there are no ties.
 Otherwise, bounds of a p-value calculated using normal approximation
 with continuity correction will be returned.
 }
 \examples{
+#### Assume all samples are distinct.
+X <- c(6.2, 3.5, NA, 7.6, 9.2)
+Y <- c(0.2, 1.3, -0.5, -1.7)
 
-set.seed(0)
-### Data of distinct real-values
-X <- rnorm(100,0,1)
-X[1:5] <- NA
-Y <- rnorm(50,1,1)
-Y[1:5] <- NA
-wmwm.test(X,Y)
+## By default, when the sample sizes of both X and Y are smaller than 50,
+## exact distribution will be used.
+wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided')
 
-### Data of tied samples
-X <- rpois(50,1)
-X[1:5] <- NA
-Y <- rpois(50,3)
-wmwm.test(X,Y)
+## using normality approximation with continuity correction:
+wmwm.test(X, Y, ties = FALSE, alternative = 'two.sided', exact = FALSE, correct = TRUE)
+
+#### Assume samples can be tied.
+X <- c(6, 9, NA, 7, 9)
+Y <- c(0, 1, 0, -1)
+
+## When the samples can be tied, normality approximation will be used.
+## By default, lower.boundary = -Inf, upper.boundary = Inf.
+wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided')
+
+## specifying lower.boundary and upper.boundary:
+wmwm.test(X, Y, ties = TRUE, alternative = 'two.sided', lower.boundary = -1, upper.boundary = 9)
 }
 \references{
 \itemize{
