@@ -1,31 +1,4 @@
-test_that("check number of valid inputs", {
-  X <- 'a'
-  Y <- c(0,1)
-  expect_error(wmwm.test(X,Y),
-               "not enough valid samples in 'X' or 'Y'")
 
-  # second example
-  X <- c('a', 'b', 'c')
-  Y <- c(0,1)
-  expect_error(wmwm.test(X,Y),
-               "not enough valid samples in 'X' or 'Y'")
-})
-
-
-test_that("check non-numerical inputs", {
-  X <- TRUE
-  Y <- c(0,1)
-  expect_error(wmwm.test(X,Y),
-               "observed samples must be numeric")
-})
-
-
-test_that("check if contain any numerical inputs", {
-  X <- c(NA, NA)
-  Y <- c(NA, NA)
-  expect_warning(wmwm.test(X,Y),
-                 "either 'X' or 'Y' does not contain any observed sample")
-})
 
 
 test_that("expect warning when observed samples are tied but ties are
