@@ -3,7 +3,7 @@ Title: Perform Wilcoxon-Mann-Whitney test with missing data
 Version: 0.0.0.9000
 Authors@R: c( 
     person("Yijin", "Zeng", , "yijin.zeng20@imperial.ac.uk", role = c("aut", "cre")),
-    person("Dean", "Bodenham", , "deanbodenhambsse@gmail.com", role = c("aut")),
+    person("Dean", "Bodenham", , "deanbodenhampkgs@gmail.com", role = c("aut")),
     person("Niall", "Adams", , "n.adams@imperial.ac.uk", role = c("aut")))
 Description: Perform Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 License: MIT + file LICENSE
