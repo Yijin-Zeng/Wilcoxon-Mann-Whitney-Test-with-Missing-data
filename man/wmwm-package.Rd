@@ -13,7 +13,7 @@ Perform Wilcoxon-Mann-Whitney test in the presence of missing data with controll
 
 Authors:
 \itemize{
-  \item Dean Bodenham \email{deanbodenhambsse@gmail.com}
+  \item Dean Bodenham \email{deanbodenhampkgs@gmail.com}
   \item Niall Adams \email{n.adams@imperial.ac.uk}
 }
 
