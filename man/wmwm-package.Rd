@@ -4,9 +4,9 @@
 \name{wmwm-package}
 \alias{wmwm}
 \alias{wmwm-package}
-\title{wmwm: Perform Wilcoxon-Mann-Whitney test with missing data}
+\title{wmwm: Performs Wilcoxon-Mann-Whitney test with missing data}
 \description{
-Perform Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
+Performs Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 }
 \author{
 \strong{Maintainer}: Yijin Zeng \email{yijin.zeng20@imperial.ac.uk}
