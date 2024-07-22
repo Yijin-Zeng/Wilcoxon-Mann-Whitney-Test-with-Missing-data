@@ -1,3 +1,5 @@
+# wmwm 1.0.0
+
 ## wmwm 1.0.0
 * Initial CRAN submission.
 * Core function:

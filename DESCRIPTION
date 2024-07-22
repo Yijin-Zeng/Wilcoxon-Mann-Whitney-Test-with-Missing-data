@@ -1,6 +1,6 @@
 Package: wmwm
 Title: Performs Wilcoxon-Mann-Whitney Test with Missing Data
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: c( 
     person("Yijin", "Zeng", , "yijinzeng98@gmail.com", role = c("aut", "cre", "cph")),
     person("Dean", "Bodenham", , "deanbodenhampkgs@gmail.com", role = c("aut")),
