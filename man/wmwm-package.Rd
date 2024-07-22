@@ -8,14 +8,6 @@
 \description{
 Performs Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 }
-\seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/Yijin-Zeng/Wilcoxon-Mann-Whitney-Test-with-Missing-data}
-  \item Report bugs at \url{https://github.com/Yijin-Zeng/Wilcoxon-Mann-Whitney-Test-with-Missing-data/issues}
-}
-
-}
 \author{
 \strong{Maintainer}: Yijin Zeng \email{yijinzeng98@gmail.com} [copyright holder]
 
