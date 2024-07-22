@@ -19,3 +19,5 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Language: en-US
+URL: https://github.com/Yijin-Zeng/Wilcoxon-Mann-Whitney-Test-with-Missing-data
+BugReports: https://github.com/Yijin-Zeng/Wilcoxon-Mann-Whitney-Test-with-Missing-data/issues
