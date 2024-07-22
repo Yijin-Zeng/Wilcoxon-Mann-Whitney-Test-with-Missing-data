@@ -50,8 +50,8 @@
 #' returned as the maximum possible p-value of the Wilcoxon-Mann-Whitney test.
 #'
 #' By default (if \code{exact} is not specified), this function returns
-#' bounds of an exact p-value if the \code{X} and \code{Y} both contain less than
-#' 50 samples and there are no ties.
+#' bounds of an exact p-value if the length of \code{X} and \code{Y} are both
+#' smaller than 50, and there are no tied observations.
 #' Otherwise, bounds of a p-value calculated using normal approximation
 #' with continuity correction will be returned.
 #'
