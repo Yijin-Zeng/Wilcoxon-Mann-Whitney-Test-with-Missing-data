@@ -9,7 +9,7 @@
 Performs Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
 }
 \author{
-\strong{Maintainer}: Yijin Zeng \email{yijinzeng98@gmail.com}
+\strong{Maintainer}: Yijin Zeng \email{yijinzeng98@gmail.com} [copyright holder]
 
 Authors:
 \itemize{

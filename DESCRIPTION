@@ -2,7 +2,7 @@ Package: wmwm
 Title: Performs Wilcoxon-Mann-Whitney test with missing data
 Version: 0.0.0.9000
 Authors@R: c( 
-    person("Yijin", "Zeng", , "yijinzeng98@gmail.com", role = c("aut", "cre")),
+    person("Yijin", "Zeng", , "yijinzeng98@gmail.com", role = c("aut", "cre", "cph")),
     person("Dean", "Bodenham", , "deanbodenhampkgs@gmail.com", role = c("aut")),
     person("Niall", "Adams", , "n.adams@imperial.ac.uk", role = c("aut")))
 Description: Performs Wilcoxon-Mann-Whitney test in the presence of missing data with controlled Type I error regardless of the values of missing data.
@@ -12,8 +12,10 @@ Depends:
 Imports: 
     stats (>= 3.2.1)
 Suggests: 
+    spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Language: en-US
